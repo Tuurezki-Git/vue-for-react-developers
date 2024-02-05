@@ -26,8 +26,15 @@ function onClick(event) {
 </script>
 
 <template>
-  <button class="button shadow-1" @click="onClick">
-    <img v-if="icon" :src="icons[icon]" :alt="alt" />
+  <button 
+    class="button shadow-1" 
+    @click="onClick"
+  >
+    <img 
+      v-if="icon" 
+      :src="icons[icon]" 
+      :alt="alt" 
+    >
   </button>
 </template>
 

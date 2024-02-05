@@ -19,12 +19,29 @@ useAutoScrollToBottom(messageListElement); // Using a "hook".
 
 // Provide the active user's id to all components in this tree. Similar to providing a React Context.
 provide("userId", USER_ID);
+
+// add message
+const addMessage = (text) => {
+  const newMessage = {
+      content: text,
+      type: "text",
+      id: 1110,
+      timestamp: new Date(),
+  };
+
+  // Mutate the messages array by appending the new message
+  messages.value = [...messages.value, newMessage];
+};
+
 </script>
 
 <template>
   <CenterOnPage>
     <div class="chat shadow-2">
-      <div ref="messageListElement" class="message-list">
+      <div 
+        ref="messageListElement" 
+        class="message-list"
+      >
         <!-- Iterate over elements with v-for -->
         <ChatMessage
           v-for="message in messages"
@@ -38,7 +55,7 @@ provide("userId", USER_ID);
 
            Tip:  In your function, you can replace 'messages.value' directly ie. 'messages.value = [...messages.value, newMessage]'
       -->           
-      <Compose />
+      <Compose @send="addMessage"/>
     </div>
   </CenterOnPage>
 </template>
